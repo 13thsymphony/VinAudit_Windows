@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="24700lepusmagnum.VinAudit.com" Publisher="CN=DC282004-FA5B-46E0-8880-6E68BFA41465" Version="1.0.0.5" />
+  <Properties>
+    <DisplayName>VinAudit.com</DisplayName>
+    <PublisherDisplayName>lepus magnum</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.jpg</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VinAudit.App">
+      <VisualElements DisplayName="VinAudit.com VIN scanner" Logo="Assets\Logo.jpg" SmallLogo="Assets\SmallLogo.jpg" Description="The VinAudit.com Windows app provides affordable and comprehensive vehicle history reports. Type in a VIN or use your device's camera to scan it. VinAudit.com is an approved access provider for the National Motor Vehicle Title Information System (NMVTIS)." ForegroundText="dark" BackgroundColor="#4CC43F">
+        <DefaultTile ShowName="allLogos" ShortName="VinAudit.com" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#FFFFFF" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <DeviceCapability Name="webcam" />
+    <DeviceCapability Name="microphone" />
+  </Capabilities>
+</Package>
