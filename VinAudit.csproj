@@ -128,8 +128,6 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="packages.config" />
-    <None Include="VinAudit_StoreKey.pfx" />
-    <None Include="VinAudit_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\logo-footer-bar.png" />
@@ -140,7 +138,6 @@
     <Content Include="Assets\SmallLogo.scale-100.jpg" />
     <Content Include="Assets\SmallLogo.scale-140.jpg" />
     <Content Include="Assets\SmallLogo.scale-180.jpg" />
-    <Content Include="Assets\SmallLogo.targetsize-256.jpg" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-140.png" />
     <Content Include="Assets\SplashScreen.scale-180.png" />

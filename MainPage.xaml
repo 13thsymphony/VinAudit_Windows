@@ -67,7 +67,11 @@
             </StackPanel>
             <TextBlock HorizontalAlignment="Left">VinAudit.com LLC is an approved access provider for the</TextBlock>
             <TextBlock HorizontalAlignment="Left">National Motor Vehicle Title Information System (NMVTIS).</TextBlock>
-            <TextBlock HorizontalAlignment="Left">Please visit www.VinAudit.com for details.</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center">Please visit </TextBlock>
+                <HyperlinkButton NavigateUri="http://www.vinaudit.com" FontSize="11" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Global User Interface" FontWeight="Normal" Padding="0" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" >www.VinAudit.com</HyperlinkButton>
+                <TextBlock VerticalAlignment="Center"> for details.</TextBlock>
+            </StackPanel>
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>

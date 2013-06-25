@@ -148,7 +148,8 @@ ClientBin/
 *~
 *.dbmdl
 *.[Pp]ublish.xml
-*.pfx
+# Simon - needed for Windows Store apps
+# *.pfx
 *.publishsettings
 
 # RIA/Silverlight projects

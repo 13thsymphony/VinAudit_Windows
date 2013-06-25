@@ -6,6 +6,9 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
+using Windows.UI.ApplicationSettings;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +28,10 @@ namespace VinAudit
     {
         // Le sigh...
         public string m_vin;
+
+        private string SETTING_ID_PRIVACY_POLICY = "privacy";
+        private string SETTING_LABEL_PRIVACY_POLICY = "Privacy policy";
+        private string URI_PRIVACY_POLICY = "http://www.lepusmagnum.com/vinauditapp";
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -88,6 +95,43 @@ namespace VinAudit
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        /// <summary>
+        /// Creates settings charm entries.
+        /// </summary>
+        /// <param name="args"></param>
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        {
+            base.OnWindowCreated(args);
+
+            SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
+        }
+
+        /// <summary>
+        /// Only implement the privacy policy link for Store app requirements.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            var handler = new UICommandInvokedHandler(onSettingsCommandPrivacy);
+            var privacyCommand = new SettingsCommand(
+                SETTING_ID_PRIVACY_POLICY,
+                SETTING_LABEL_PRIVACY_POLICY,
+                handler
+                );
+
+            args.Request.ApplicationCommands.Add(privacyCommand);
+        }
+
+        /// <summary>
+        /// Handles the privacy policy setting.
+        /// </summary>
+        /// <param name="command"></param>
+        void onSettingsCommandPrivacy(IUICommand command)
+        {
+            Launcher.LaunchUriAsync(new Uri(URI_PRIVACY_POLICY));
         }
     }
 }
