@@ -90,7 +90,15 @@ namespace VinAudit
             // we are already showing the VinAudit logo on the app header.
             string script = @"document.getElementById('default-logo').style.display='none';";
             string[] args = { script };
-            VinAuditWebView.InvokeScript("eval", args);
+            try
+            {
+                // This could fail if the webpage was changed?
+                VinAuditWebView.InvokeScript("eval", args);
+            }
+            catch (Exception err)
+            {
+                // Ignore
+            }
         }
     }
 }
