@@ -130,7 +130,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\logo-footer-bar.png" />
@@ -149,6 +148,7 @@
     <Content Include="Assets\StoreLogo.scale-180.jpg" />
     <Content Include="Common\ReadMe.txt" />
     <None Include="Package.StoreAssociation.xml" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -169,8 +169,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ZXing">
-      <HintPath>packages\ZXing.Net.0.11.0.1\lib\netcore45\ZXing.winmd</HintPath>
+    <Reference Include="ZXing, Version=0.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\ZXing.Net.0.12.0.0\lib\windows8\ZXing.winmd</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
