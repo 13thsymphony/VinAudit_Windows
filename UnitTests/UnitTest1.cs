@@ -19,8 +19,9 @@ namespace UnitTests
             {
                 "11111111111111111",
                 "JNKCP11A8XT010806",
-                "1VXBR12EXCP544329",
-                "2G1FP32G022152856"
+                "2G1FP32G022152856",
+                "1M8GDM9AXKP042788",
+                "5GZCZ43D13S812715"
             };
 
             for (int i = 0; i < variations.Length; i++)
@@ -43,8 +44,8 @@ namespace UnitTests
                 "I1I1i1ii1III1i111",
                 "JNKCP11A8XTq1O8o6",
                 "2GiFP32GQ22I52856"
-            }; 
-            
+            };
+
             string[] canonicalized =
             {
                 "11111111111111111",

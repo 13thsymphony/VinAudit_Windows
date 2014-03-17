@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace VinAudit
 {
+    // Validation based on info from: http://en.wikipedia.org/wiki/Vehicle_identification_number
     public struct VinValidationInfo
     {
         // IsValid = (IsCorrectLength && IsChecksumValid && HasValidCharacters).
@@ -37,6 +38,7 @@ namespace VinAudit
         private const int VIN_CHECKSUM_INDEX = 8;
 
         // Maps a char to the VIN checksum value (based on EBCDIC).
+        // http://en.wikipedia.org/wiki/EBCDIC
         // Only contains entries for strictly valid characters
         // (uppercase letters and digits).
         // We define strict validity as "canonical".
@@ -71,17 +73,17 @@ namespace VinAudit
             m_vinCharToEbcdic.Add('F', 6);
             m_vinCharToEbcdic.Add('G', 7);
             m_vinCharToEbcdic.Add('H', 8);
-            // Intentionally omitted, invalid VIN character.
+            // "I" is intentionally omitted, invalid VIN character.
             m_vinCharToEbcdic.Add('J', 1);
             m_vinCharToEbcdic.Add('K', 2);
             m_vinCharToEbcdic.Add('L', 3);
             m_vinCharToEbcdic.Add('M', 4);
             m_vinCharToEbcdic.Add('N', 5);
-            // Intentionally omitted, invalid VIN character.
+            // "O" is intentionally omitted, invalid VIN character.
             m_vinCharToEbcdic.Add('P', 7);
-            // Intentionally omitted, invalid VIN character.
+            // "Q" is intentionally omitted, invalid VIN character.
             m_vinCharToEbcdic.Add('R', 9);
-            // Intentionally omitted, invalid VIN character.
+            // "S" intentionally skips 1 value.
             m_vinCharToEbcdic.Add('S', 2);
             m_vinCharToEbcdic.Add('T', 3);
             m_vinCharToEbcdic.Add('U', 4);
