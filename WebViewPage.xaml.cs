@@ -57,8 +57,26 @@ namespace VinAudit
                 sender = "";
             }
 
-            Uri vinURL = new Uri("http://www.vinaudit.com/go.php?r=simontao&mobile=1&vin=" + (string)sender);
+            Uri vinURL = vinURL = new Uri("http://www.vinaudit.com/go.php?r=simontao&mobile=1&vin=" + (string)sender);
+
+            if (IsVinKnownDemonstrationValue((string)sender))
+            {
+                // We are in demo mode, bypass to the sample VIN report.
+                // This allows us to avoid needing a credit card for demo scenarios.
+                vinURL = new Uri("http://www.vinaudit.com/report?id=sample");
+            }
+
             VinAuditWebView.Navigate(vinURL);
+        }
+
+        /// <summary>
+        /// Checks if we are requesting a known demo VIN.
+        /// </summary>
+        /// <param name="vin"></param>
+        /// <returns>True if this is a known demo VIN. False otherwise.</returns>
+        private bool IsVinKnownDemonstrationValue(string vin)
+        {
+            return vin == "1VXBR12EXCP901213";
         }
 
         /// <summary>
