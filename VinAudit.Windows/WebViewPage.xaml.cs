@@ -25,24 +25,29 @@ namespace VinAudit
         public WebViewPage()
         {
             this.InitializeComponent();
-
-            VinAuditWebView.NavigationFailed += OnNavigationFailed;
-        }
-
-        private async void OnNavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
-        {
-            var dialog = new MessageDialog("We cannot reach VinAudit.com. Please ensure you have access to the Internet.", "Connection error");
-            await dialog.ShowAsync();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            // I can't figure out how to get the Frame.Navigated event to work, so use a
-            // shared var in App.Xaml to pass the VIN...
-            App theApp = (App)App.Current;
-            OnNavigated(theApp.m_vin, null);
+            string vin = (string)e.Parameter;
+
+            if (vin == null)
+            {
+                vin = "";
+            }
+
+            Uri vinURL = vinURL = new Uri("http://www.vinaudit.com/go.php?r=simontao&mobile=1&vin=" + vin);
+
+            if (IsVinKnownDemonstrationValue(vin))
+            {
+                // We are in demo mode, bypass to the sample VIN report.
+                // This allows us to avoid needing a credit card for demo scenarios.
+                vinURL = new Uri("http://www.vinaudit.com/report?id=sample");
+            }
+
+            VinAuditWebView.Navigate(vinURL);
         }
 
         /// <summary>
@@ -102,8 +107,18 @@ namespace VinAudit
         {
         }
 
-        private void VinAuditWebView_LoadCompleted(object sender, NavigationEventArgs e)
+        private async void VinAuditWebView_NavigationCompleted(object sender, WebViewNavigationCompletedEventArgs e)
         {
+            if (!e.IsSuccess)
+            {
+                var dialog = new MessageDialog(
+                    "We cannot reach VinAudit.com. Please ensure you have access to the Internet.",
+                    "Connection error"
+                    );
+
+                await dialog.ShowAsync();
+            }
+
             // Inject JS to partially de-brand the website. This is necessary because
             // we are already showing the VinAudit logo on the app header.
             string script = @"document.getElementById('default-logo').style.display='none';";
@@ -111,9 +126,9 @@ namespace VinAudit
             try
             {
                 // This could fail if the webpage was changed?
-                VinAuditWebView.InvokeScript("eval", args);
+                await VinAuditWebView.InvokeScriptAsync("eval", args);
             }
-            catch (Exception err)
+            catch (Exception)
             {
                 // Ignore
             }

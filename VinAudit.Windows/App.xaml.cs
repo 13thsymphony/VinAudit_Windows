@@ -26,9 +26,6 @@ namespace VinAudit
     /// </summary>
     sealed partial class App : Application
     {
-        // Le sigh...
-        public string m_vin;
-
         private string SETTING_ID_PRIVACY_POLICY = "privacy";
         private string SETTING_LABEL_PRIVACY_POLICY = "Privacy policy";
         private string URI_PRIVACY_POLICY = "http://www.lepusmagnum.com/vinauditapp";

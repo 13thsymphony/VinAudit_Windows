@@ -37,7 +37,7 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <Image x:Name="pageTitle" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="100" Source="Assets/Splashscreen.png"/>
         </Grid>
-        <WebView x:Name="VinAuditWebView" Grid.Row="1" LoadCompleted="VinAuditWebView_LoadCompleted" />
+        <WebView x:Name="VinAuditWebView" Grid.Row="1" NavigationCompleted="VinAuditWebView_NavigationCompleted" />
         <!--<StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="{StaticResource OuterPanelBorder}" Grid.Row="1" VerticalAlignment="Top">
             <WebView x:Name="VinAuditWebView" Height="Auto"/>
         </StackPanel>-->

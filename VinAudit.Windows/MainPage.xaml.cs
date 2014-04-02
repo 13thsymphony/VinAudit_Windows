@@ -142,7 +142,7 @@ namespace VinAudit
             }
             else
             {
-                DisableCameraSelectionAsync();
+                await DisableCameraSelectionAsync();
             }
         }
 
@@ -229,10 +229,8 @@ namespace VinAudit
                 await TryShutdownCaptureAsync();
             }
 
-            // Stupid hack because I can't get Frame.Navigated to work correctly
-            App theApp = (App)App.Current;
-            theApp.m_vin = m_canonicalizedVin;
-            this.Frame.Navigate(typeof(WebViewPage), m_canonicalizedVin);
+            // Apparently you must specifically cast the parameter to type object...
+            this.Frame.Navigate(typeof(WebViewPage), (object)m_canonicalizedVin);
         }
 
         private void VinInputTextbox_TextChanged(object sender, TextChangedEventArgs e)
