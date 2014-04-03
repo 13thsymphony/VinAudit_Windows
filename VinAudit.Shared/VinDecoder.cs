@@ -24,7 +24,7 @@ namespace VinAudit
     }
 
     /// <summary>
-    /// Performs best effort (basic) processing a VIN:
+    /// Performs best effort (basic) processing of a VIN:
     /// - Validity check
     /// - VIN-encoded vehicle info (not implememented yet)
     /// - Autocorrection

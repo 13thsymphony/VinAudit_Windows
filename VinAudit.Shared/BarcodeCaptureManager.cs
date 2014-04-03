@@ -165,31 +165,36 @@ namespace VinAudit
                                 );
 
                             var pixels = pixelProvider.DetachPixelData();
-                            var reader = new BarcodeReader
+                            var reader = new BarcodeReader();
+
+                            reader.Options.TryHarder = true;
+                            reader.AutoRotate = false;
+                            reader.Options.PossibleFormats = new List<BarcodeFormat>()
                             {
-                                TryHarder = true,
-                                AutoRotate = false,
-                                PossibleFormats = new List<BarcodeFormat>()
-                                {
-                                    BarcodeFormat.CODE_39 // Used by VINs
-                                }
+                                BarcodeFormat.CODE_39 // Used by VINs
                             };
 
                             var result = reader.Decode(
                                 pixels,
                                 (int)decoder.PixelWidth,
                                 (int)decoder.PixelHeight,
+#if WINDOWS_PHONE_APP // The version of ZXing.NET appears to be slightly different when we compile from source.
+                                RGBLuminanceSource.BitmapFormat.BGRA32
+#else
                                 BitmapFormat.BGRA32
+#endif
                                 );
+
+
 
                             if (result != null)
                             {
                                 barcode = result.Text;
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
-                            // Errors = just return null barcode
+                            // Errors = just return null barcode.
                         }
                     }
 
@@ -242,6 +247,8 @@ namespace VinAudit
         /// <param name="barcode">If no barcode was found, is null.</param>
         private void signalBarcodeReady(int requestId, string barcode)
         {
+// Async method is not awaited by design.
+#pragma warning disable 4014
             m_dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                 () =>
                 {
@@ -249,6 +256,7 @@ namespace VinAudit
                     Debug.Assert(m_tasksInFlight >= 0);
                     m_completedHandler(requestId, barcode);
                 });
+#pragma warning restore 4014
         }
 
         /// <summary>

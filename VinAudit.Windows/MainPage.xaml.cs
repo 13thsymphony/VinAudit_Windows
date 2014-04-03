@@ -28,7 +28,7 @@ namespace VinAudit
     /// <summary>
     /// VIN input page. The first page that the user sees when they launch the app.
     /// </summary>
-    public sealed partial class MainPage : VinAudit.Common.LayoutAwarePage
+    public sealed partial class MainPage : Page
     {
         // ************** Member variables *********************
         // We only hold on to one BarcodeCaptureManager at a time for the active camera.

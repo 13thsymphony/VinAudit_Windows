@@ -20,7 +20,7 @@ namespace VinAudit
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class WebViewPage : VinAudit.Common.LayoutAwarePage
+    public sealed partial class WebViewPage : Page
     {
         public WebViewPage()
         {
@@ -130,7 +130,7 @@ namespace VinAudit
             }
             catch (Exception)
             {
-                // Ignore
+                // Ignore.
             }
         }
     }

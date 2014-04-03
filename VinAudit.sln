@@ -12,6 +12,9 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VinAudit.Shared", "VinAudit.Shared\VinAudit.Shared.shproj", "{6322FDED-8D6B-4793-90BF-A76151682881}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{36C189BB-A1CE-49E7-8EDF-5F982E22AA07}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F880A197-FE6D-4E7A-AB3D-068E972D6F29} = {F880A197-FE6D-4E7A-AB3D-068E972D6F29}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
