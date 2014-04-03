@@ -8,7 +8,9 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
+#if !WINDOWS_PHONE_APP // Settings UI and privacy policy link only needed for Windows.
 using Windows.UI.ApplicationSettings;
+#endif
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -32,9 +34,11 @@ namespace VinAudit
         private TransitionCollection transitions;
 #endif
 
+#if !WINDOWS_PHONE_APP
         private string SETTING_ID_PRIVACY_POLICY = "privacy";
         private string SETTING_LABEL_PRIVACY_POLICY = "Privacy policy";
         private string URI_PRIVACY_POLICY = "http://www.lepusmagnum.com/vinauditapp";
+#endif
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -147,10 +151,12 @@ namespace VinAudit
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
             base.OnWindowCreated(args);
-
+#if !WINDOWS_PHONE_APP
             SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
+#endif
         }
 
+#if !WINDOWS_PHONE_APP
         /// <summary>
         /// Only implement the privacy policy link for Store app requirements.
         /// </summary>
@@ -178,5 +184,6 @@ namespace VinAudit
             Launcher.LaunchUriAsync(new Uri(URI_PRIVACY_POLICY));
 #pragma warning restore 4014
         }
+#endif // !WINDOWS_PHONE_APP
     }
 }

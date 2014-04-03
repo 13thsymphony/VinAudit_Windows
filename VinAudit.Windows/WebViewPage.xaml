@@ -10,19 +10,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Page.Resources>
-
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">placeholder</x:String>
-        <Thickness x:Key="OuterPanelBorder">20</Thickness>
-    </Page.Resources>
-
     <!--
         This grid acts as a root panel for the page that defines two rows:
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid Style="{StaticResource LayoutRootStyle}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="1*"/>
@@ -34,7 +27,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"/>
             <Image x:Name="pageTitle" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="100" Source="Assets/Splashscreen.png"/>
         </Grid>
         <WebView x:Name="VinAuditWebView" Grid.Row="1" NavigationCompleted="VinAuditWebView_NavigationCompleted" />

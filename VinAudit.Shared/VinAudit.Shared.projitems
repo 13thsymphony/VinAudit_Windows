@@ -27,8 +27,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Common\StandardStyles.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)VinAuditStyles.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using VinAudit.Common;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Imaging;
@@ -40,6 +41,7 @@ namespace VinAudit
         // we set m_captureManager = null, but the user's intent needs to be preserved when we come back.
         private bool m_hasUserEnabledCamera;
 
+        private NavigationHelper m_navigationHelper;
         //private DispatcherTimer m_timer;
         private string m_canonicalizedVin; // What is actually sent to VinAudit
 
@@ -60,6 +62,9 @@ namespace VinAudit
         public MainPage()
         {
             this.InitializeComponent();
+            m_navigationHelper = new NavigationHelper(this);
+            m_navigationHelper.LoadState += LoadState;
+            m_navigationHelper.SaveState += SaveState;
             //m_timer = new DispatcherTimer();
             Window.Current.VisibilityChanged += OnWindowVisibilityChanged;
             // Wait until LoadState is called to do actual page setup.
@@ -180,21 +185,14 @@ namespace VinAudit
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        private void LoadState(object sender, LoadStateEventArgs e)
         {
             ResetPageState();
 
-            // Determine if cameras are available.
-            m_numCameras = await CameraEnumerator.QueryCamerasAsync();
-            if (m_numCameras == 0)
-            {
-                await DisableCameraSelectionAsync();
-            }
-
-            if (pageState != null)
+            if (e.PageState != null)
             {
                 object value;
-                if (pageState.TryGetValue("VinText", out value))
+                if (e.PageState.TryGetValue("VinText", out value))
                 {
                     VinInputTextbox.Text = (string)value;
                 }
@@ -207,23 +205,42 @@ namespace VinAudit
         /// requirements of <see cref="SuspensionManager.SessionState"/>.
         /// </summary>
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
-        protected override void SaveState(Dictionary<String, Object> pageState)
+        private void SaveState(object sender, SaveStateEventArgs e)
         {
-            pageState.Add("VinText", VinInputTextbox.Text);
+            e.PageState.Add("VinText", VinInputTextbox.Text);
         }
 
-
-        private async void OnNavigated(object sender, NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            m_navigationHelper.OnNavigatedTo(e);
+
+            // Determine if cameras are available.
+            m_numCameras = await CameraEnumerator.QueryCamerasAsync();
+            if (m_numCameras == 0)
+            {
+                await DisableCameraSelectionAsync();
+            }
+
             if (m_hasUserEnabledCamera)
             {
                 await TryInitializeCaptureAsync(m_activeCameraIndex);
             }
         }
 
+        protected override async void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            m_navigationHelper.OnNavigatedFrom(e);
+
+            if (m_captureManager != null)
+            {
+                await TryShutdownCaptureAsync();
+            }
+        }
+
         // ************** Control event handlers ****************
         private async void SubmitVinButton_Click(object sender, RoutedEventArgs e)
         {
+            // TODO: I think this is covered by the OnNavigatedFrom method now, may want to remove this
             if (m_captureManager != null)
             {
                 await TryShutdownCaptureAsync();

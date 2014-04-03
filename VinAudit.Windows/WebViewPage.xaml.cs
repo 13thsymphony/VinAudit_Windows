@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using VinAudit.Common;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -22,14 +23,24 @@ namespace VinAudit
     /// </summary>
     public sealed partial class WebViewPage : Page
     {
+        // ************** Member variables *********************
+        private NavigationHelper m_navigationHelper;
+
         public WebViewPage()
         {
             this.InitializeComponent();
+
+            m_navigationHelper = new NavigationHelper(this);
+            // We don't bother with any page state.
         }
 
+        /// <summary>
+        /// Loads the page and receives the requested VIN from the main page.
+        /// </summary>
+        /// <param name="e">e.Parameter contains a string that is the VIN.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
+            m_navigationHelper.OnNavigatedTo(e);
 
             string vin = (string)e.Parameter;
 
@@ -50,28 +61,9 @@ namespace VinAudit
             VinAuditWebView.Navigate(vinURL);
         }
 
-        /// <summary>
-        /// Real page initialization should happen here, as we have the information from our caller.
-        /// </summary>
-        /// <param name="sender">String containing VIN, or null.</param>
-        /// <param name="e"></param>
-        private void OnNavigated(object sender, NavigationEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            if ((string)sender == null)
-            {
-                sender = "";
-            }
-
-            Uri vinURL = vinURL = new Uri("http://www.vinaudit.com/go.php?r=simontao&mobile=1&vin=" + (string)sender);
-
-            if (IsVinKnownDemonstrationValue((string)sender))
-            {
-                // We are in demo mode, bypass to the sample VIN report.
-                // This allows us to avoid needing a credit card for demo scenarios.
-                vinURL = new Uri("http://www.vinaudit.com/report?id=sample");
-            }
-
-            VinAuditWebView.Navigate(vinURL);
+            m_navigationHelper.OnNavigatedFrom(e);
         }
 
         /// <summary>
@@ -82,29 +74,6 @@ namespace VinAudit
         private bool IsVinKnownDemonstrationValue(string vin)
         {
             return vin == "1VXBR12EXCP901213";
-        }
-
-        /// <summary>
-        /// Populates the page with content passed during navigation.  Any saved state is also
-        /// provided when recreating a page from a prior session.
-        /// </summary>
-        /// <param name="navigationParameter">The parameter value passed to
-        /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested.
-        /// </param>
-        /// <param name="pageState">A dictionary of state preserved by this page during an earlier
-        /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
-        {
-        }
-
-        /// <summary>
-        /// Preserves state associated with this page in case the application is suspended or the
-        /// page is discarded from the navigation cache.  Values must conform to the serialization
-        /// requirements of <see cref="SuspensionManager.SessionState"/>.
-        /// </summary>
-        /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
-        protected override void SaveState(Dictionary<String, Object> pageState)
-        {
         }
 
         private async void VinAuditWebView_NavigationCompleted(object sender, WebViewNavigationCompletedEventArgs e)
