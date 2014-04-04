@@ -2,7 +2,7 @@
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
   <Identity Name="24700lepusmagnum.VinAudit.com" Publisher="CN=DC282004-FA5B-46E0-8880-6E68BFA41465" Version="1.1.0.6" />
   <Properties>
-    <DisplayName>001 VinAudit.com</DisplayName>
+    <DisplayName>VinAudit.com</DisplayName>
     <PublisherDisplayName>lepus magnum</PublisherDisplayName>
     <Logo>Assets\StoreLogo.jpg</Logo>
   </Properties>
@@ -22,7 +22,7 @@
           </m2:ShowNameOnTiles>
         </m2:DefaultTile>
         <m2:ApplicationView MinWidth="width320" />
-        <m2:SplashScreen BackgroundColor="#FFFFFF" Image="Assets\SplashScreen.png" />
+        <m2:SplashScreen BackgroundColor="#1F1F1F" Image="Assets\SplashScreen.png" />
       </m2:VisualElements>
     </Application>
   </Applications>

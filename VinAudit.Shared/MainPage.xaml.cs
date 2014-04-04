@@ -62,12 +62,15 @@ namespace VinAudit
         public MainPage()
         {
             this.InitializeComponent();
+
             m_navigationHelper = new NavigationHelper(this);
             m_navigationHelper.LoadState += LoadState;
             m_navigationHelper.SaveState += SaveState;
             //m_timer = new DispatcherTimer();
             Window.Current.VisibilityChanged += OnWindowVisibilityChanged;
-            // Wait until LoadState is called to do actual page setup.
+            //pageRoot.RequestedTheme = ElementTheme.Light;
+
+            // Wait until OnNavigatedTo is called to do actual page setup.
         }
 
         private async void OnWindowVisibilityChanged(object sender, VisibilityChangedEventArgs e)

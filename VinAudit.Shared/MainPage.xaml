@@ -8,7 +8,8 @@
     xmlns:common="using:VinAudit.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <!--
         This grid acts as a root panel for the page that defines two rows:
@@ -30,7 +31,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"/>
-            <Image x:Name="pageTitle" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="100" Source="Assets/Splashscreen.png"/>
+            <Image x:Name="pageTitle" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="100" Source="Assets/VinAudit.png"/>
         </Grid>
         <!-- Input elements, these have a fixed width layout on screen. Width is determined by VinInputTextBox. -->
         <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Width="280" Margin="{StaticResource InnerPanelBorder}" Grid.Row="1" VerticalAlignment="Top">
@@ -44,10 +45,10 @@
         </StackPanel>
         <!-- CaptureElement can take up more of the screen than the input elements. -->
         <!-- Man, a lot of manual alignment of elements.... -->
-        <Border x:Name="CaptureBorder" Grid.Row="2" Height="230" Width="300" BorderBrush="{StaticResource VinAuditDarkGreenSolid}" Background="White" BorderThickness="2" Tapped="CaptureBorder_Tapped">
-            <CaptureElement Margin="{StaticResource InnerPanelBorder}" x:Name="CapturePreview" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="230" MaxWidth="300" IsHitTestVisible="False"/>
+        <Border x:Name="CaptureBorder" Grid.Row="2" Height="230" Width="300" BorderBrush="{StaticResource VinAuditDarkGreenSolid}" Background="{StaticResource VinAuditVerticalGreenGradient}" BorderThickness="5" Tapped="CaptureBorder_Tapped">
+            <CaptureElement x:Name="CapturePreview" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="230" MaxWidth="300" IsHitTestVisible="False"/>
         </Border>
-        <Border Background="#80FFFFFF" Margin="2" Grid.Row="2" Height="32" Width="296" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">
+        <Border Background="#80FFFFFF" Margin="2" Grid.Row="2" Height="32" Width="290" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">
             <TextBlock x:Name="UseCameraTextBlock" FontSize="16" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center"  IsHitTestVisible="False">x</TextBlock>
         </Border>
         <!-- Bottom panel contains the VinAudit footer, tries to match the look of the mobile website. -->

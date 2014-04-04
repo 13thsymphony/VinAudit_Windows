@@ -28,7 +28,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"/>
-            <Image x:Name="pageTitle" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="100" Source="Assets/Splashscreen.png"/>
+            <Image x:Name="pageTitle" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="100" Source="Assets/VinAudit.png"/>
         </Grid>
         <WebView x:Name="VinAuditWebView" Grid.Row="1" NavigationCompleted="VinAuditWebView_NavigationCompleted" />
         <!--<StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="{StaticResource OuterPanelBorder}" Grid.Row="1" VerticalAlignment="Top">
