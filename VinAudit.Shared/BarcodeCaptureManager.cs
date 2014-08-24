@@ -101,7 +101,9 @@ namespace VinAudit
         {
             if (m_captureState == CameraCaptureState.Capturing)
             {
+#pragma warning disable 4014 // Async method without an await - we can't await in a destructor...this isn't that safe.
                 TryStopCaptureAsync();
+#pragma warning restore
             }
         }
 
@@ -169,7 +171,7 @@ namespace VinAudit
 
                             reader.Options.TryHarder = true;
                             reader.AutoRotate = false;
-                            reader.Options.PossibleFormats = new List<BarcodeFormat>()
+                            reader.Options.PossibleFormats = new BarcodeFormat[]
                             {
                                 BarcodeFormat.CODE_39 // Used by VINs
                             };
@@ -178,11 +180,7 @@ namespace VinAudit
                                 pixels,
                                 (int)decoder.PixelWidth,
                                 (int)decoder.PixelHeight,
-#if WINDOWS_PHONE_APP // The version of ZXing.NET appears to be slightly different when we compile from source.
-                                RGBLuminanceSource.BitmapFormat.BGRA32
-#else
                                 BitmapFormat.BGRA32
-#endif
                                 );
 
 

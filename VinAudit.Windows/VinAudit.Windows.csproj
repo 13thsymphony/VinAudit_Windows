@@ -133,8 +133,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ZXing">
-      <HintPath>..\packages\ZXing.Net.0.12.0.0\lib\windows8\ZXing.winmd</HintPath>
+    <Reference Include="ZXing, Version=0.14.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\windows8\ZXing.winmd</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="..\VinAudit.Shared\VinAudit.Shared.projitems" Label="Shared" />
