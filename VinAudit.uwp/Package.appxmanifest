@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="e0babfaf-fc6f-4b4b-b483-08fd4da1f710" Publisher="CN=sitao" Version="1.0.0.0" />
+  <Identity Name="lepusmagnum.VinAudit.com" Publisher="CN=sitao" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="e0babfaf-fc6f-4b4b-b483-08fd4da1f710" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>VinAudit.uwp</DisplayName>
-    <PublisherDisplayName>sitao</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <PublisherDisplayName>lepus magnum</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.jpg</Logo>
   </Properties>
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
@@ -15,8 +15,11 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VinAudit.uwp.App">
-      <uap:VisualElements DisplayName="VinAudit for Windows" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Carfax report alternative for Windows 10" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="VinAudit.com VIN scanner" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.jpg" Description="VinAudit.com provides instant, affordable and comprehensive vehicle history reports. Type in a VIN or use your device's camera to scan it. VinAudit.com is an approved access provider for the National Motor Vehicle Title Information System (NMVTIS)." BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="VinAudit">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+          </uap:ShowNameOnTiles>
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
@@ -24,5 +27,6 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <DeviceCapability Name="webcam" />
   </Capabilities>
 </Package>
