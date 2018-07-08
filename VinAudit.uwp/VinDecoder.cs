@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VinAudit.uwp
 {
@@ -62,7 +59,7 @@ namespace VinAudit.uwp
 
         static VinDecoder()
         {
-            Debug.Assert(m_remainderToCheckDigit.Length + 1 == VIN_CHECKSUM_MODULUS);
+            Debug.Assert(m_remainderToCheckDigit.Length == VIN_CHECKSUM_MODULUS);
 
             m_vinCharToEbcdic = new Dictionary<char, int>();
             m_vinCharToEbcdic.Add('A', 1);

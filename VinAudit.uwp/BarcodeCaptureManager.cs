@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 using Windows.Media.Capture;
 using Windows.Media.MediaProperties;
 using Windows.Storage.Streams;
-using Windows.System.Threading;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using ZXing;
@@ -144,7 +139,7 @@ namespace VinAudit.uwp
             m_tasksInFlight++;
             int taskId = m_nextTaskId++;
 
-            var workItem = ThreadPool.RunAsync(
+            var workItem = Windows.System.Threading.ThreadPool.RunAsync(
                 async (source) =>
                 {
                     // We are relying on checks elsewhere in the class to ensure we are in valid state.
