@@ -61,7 +61,7 @@ namespace VinAudit.uwp
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //TODO: Load state from previously suspended application
+                    // No state to restore.
                 }
 
                 // Place the frame in the current Window
@@ -99,7 +99,7 @@ namespace VinAudit.uwp
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+            // No application state to save.
             deferral.Complete();
         }
     }
