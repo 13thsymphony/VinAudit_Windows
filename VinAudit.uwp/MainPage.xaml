@@ -20,15 +20,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Back button and page title -->
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"/>
-            <Image x:Name="pageTitle" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="100" Source="Assets/VinAudit.png"/>
-        </Grid>
+        <Image x:Name="pageTitle" Grid.Column="1" HorizontalAlignment="Center" Height="100" Source="Assets/SplashScreen.png"/>
         <!-- Input elements, these have a fixed width layout on screen. Width is determined by VinInputTextBox. -->
         <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Width="280" Margin="{StaticResource InnerPanelBorder}" Grid.Row="1" VerticalAlignment="Top">
             <TextBlock HorizontalAlignment="Left" FontSize="18" FontWeight="Bold">Enter VIN:</TextBlock>
@@ -47,19 +39,9 @@
         <Border Background="#80FFFFFF" Margin="2" Grid.Row="2" Height="32" Width="290" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">
             <TextBlock x:Name="UseCameraTextBlock" FontSize="16" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center"  IsHitTestVisible="False">x</TextBlock>
         </Border>
-        <!-- Bottom panel contains the VinAudit footer, tries to match the look of the mobile website. -->
-        <StackPanel HorizontalAlignment="Center" Width="300" Orientation="Vertical" Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,30">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,4">
-                <TextBlock FontSize="12" FontWeight="Bold" VerticalAlignment="Bottom">Powered by</TextBlock>
-                <Image Source="Assets/Logo-footer-bar.png" Margin="4,0,0,3"/>
-            </StackPanel>
-            <TextBlock HorizontalAlignment="Left">VinAudit.com LLC is an approved access provider for the</TextBlock>
-            <TextBlock HorizontalAlignment="Left">National Motor Vehicle Title Information System (NMVTIS).</TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center">Please visit </TextBlock>
-                <HyperlinkButton NavigateUri="http://www.vinaudit.com" FontSize="11" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Global User Interface" FontWeight="Normal" Padding="0" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" >www.VinAudit.com</HyperlinkButton>
-                <TextBlock VerticalAlignment="Center"> for details.</TextBlock>
-            </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="8">
+            <TextBlock FontSize="12" FontWeight="Bold" VerticalAlignment="Bottom" Margin="4">Powered by:</TextBlock>
+            <Image Source="Assets/Logo-footer-bar.png" VerticalAlignment="Bottom" Stretch="None" Margin="4"/>
         </StackPanel>
     </Grid>
 </Page>

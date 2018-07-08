@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -36,6 +37,9 @@ namespace VinAudit.uwp
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+
+            ApplicationView.PreferredLaunchViewSize = new Windows.Foundation.Size(600, 800);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             Frame rootFrame = Window.Current.Content as Frame;
 

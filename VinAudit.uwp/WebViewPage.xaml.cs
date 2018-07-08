@@ -13,6 +13,7 @@ namespace VinAudit.uwp
     public sealed partial class WebViewPage : Page
     {
         // ************** Member variables *********************
+        string vin;
 
         public WebViewPage()
         {
@@ -27,7 +28,7 @@ namespace VinAudit.uwp
         /// <param name="e">e.Parameter contains a string that is the VIN.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            string vin = (string)e.Parameter;
+            vin = (string)e.Parameter;
 
             if (vin == null)
             {
@@ -85,6 +86,12 @@ namespace VinAudit.uwp
             {
                 // Ignore.
             }
+        }
+
+        private void backButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            // Return the current VIN back to the main page.
+            this.Frame.Navigate(typeof(MainPage), (object)vin);
         }
     }
 }

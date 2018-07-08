@@ -8,29 +8,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-
-        <!-- Back button and page title -->
+        
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!--<Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"/>-->
-            <Image x:Name="pageTitle" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="100" Source="Assets/VinAudit.png"/>
+            <SymbolIcon Grid.Column="0" x:Name="backButton" Symbol="Back" PointerReleased="backButton_Click" Margin="8"/>
+            <Image x:Name="pageTitle" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Height="100" Source="Assets/SplashScreen.png"/>
         </Grid>
         <WebView x:Name="VinAuditWebView" Grid.Row="1" NavigationCompleted="VinAuditWebView_NavigationCompleted" />
-        <!--<StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="{StaticResource OuterPanelBorder}" Grid.Row="1" VerticalAlignment="Top">
-            <WebView x:Name="VinAuditWebView" Height="Auto"/>
-        </StackPanel>-->
     </Grid>
 </Page>
