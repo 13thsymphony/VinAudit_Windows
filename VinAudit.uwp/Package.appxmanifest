@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="24700lepusmagnum.VinAudit.com" Publisher="CN=sitao" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="e0babfaf-fc6f-4b4b-b483-08fd4da1f710" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="24700lepusmagnum.57504D53209CF" Publisher="CN=DC282004-FA5B-46E0-8880-6E68BFA41465" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="cc8e4ee1-d3ef-4f8b-b782-736d600f01aa" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>VinAudit.uwp</DisplayName>
-    <PublisherDisplayName>lepus magnum</PublisherDisplayName>
+    <DisplayName>VinAudit vehicle history reports</DisplayName>
+    <PublisherDisplayName>Simon Tao</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
